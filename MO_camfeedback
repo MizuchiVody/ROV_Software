@@ -1,1 +1,20 @@
-
+from tkinter import *
+from cv2 import *
+import sys
+cam = VideoCapture(0)
+width = sys.maxsize
+height = sys.maxsize
+cam.set(CAP_PROP_FRAME_WIDTH, width)
+cam.set(CAP_PROP_FRAME_HEIGHT, height)
+root = Tk()
+label = Label(root)
+label.pack(side = TOP, fill = BOTH, expand = YES)
+while (True):
+    var, frame = cam.read()
+    imshow('Frame', frame)
+    setWindowProperty('Frame', WND_PROP_FULLSCREEN, WINDOW_FULLSCREEN)
+    if (waitKey(1) & 0xFF == 27):
+        break
+cam.release()
+destroyAllWindows()
+root.mainloop()
